@@ -3,11 +3,21 @@ import { bgBlue } from "colors";
 
 import { settings } from "@settings";
 import { DailyRecord, DailyScoreboard } from "@entities";
+import { addDailyRecord } from "@usecases/dailyBot.ts";
 
 console.log(bgBlue("Starting discord bot..."));
 
 const token = settings.DISCORD_TOKEN;
 const botId = BigInt(settings.BOT_ID);
+
+console.log("starting")
+const res = await addDailyRecord({
+  name: "test",
+  userId: '1',
+})
+console.log("ended")
+console.log(res)
+
 
 const baseBot = createBot({
   token,
@@ -28,14 +38,17 @@ const baseBot = createBot({
 
       if (!isDailyMessage) return;
 
-      const userId = message.member!.id;
+      const userId = message.member!.id.toString();
       const name = message.member?.nick ?? message.tag;
       const dailyRecord: DailyRecord = {
         name,
         userId,
-        date: new Date().toISOString(),
       }
-      // TODO: load from database
+
+      addDailyRecord(dailyRecord);
+
+      // TODO: getScoreboardByUserId(userId)
+      // TODO: updateScoreboard(userId)
       const dailyScoreboard: DailyScoreboard = {
         name,
         userId,
@@ -50,4 +63,4 @@ const baseBot = createBot({
   },
 });
 
-await startBot(baseBot);
+// await startBot(baseBot);

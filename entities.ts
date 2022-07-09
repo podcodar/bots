@@ -1,12 +1,9 @@
 export interface DailyRecord {
-  date: string;
-  userId: BigInt;
+  userId: string;
   name: string;
 }
 
-export interface DailyScoreboard {
-  userId: BigInt;
-  name: string;
+export interface DailyScoreboard extends DailyRecord {
   points: number;
   currentStreak: number;
 }
