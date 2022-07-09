@@ -2,3 +2,6 @@ scripts:
   start:
     desc: Start package
     cmd: ./mod.ts
+    allow:
+      - net
+      - read
