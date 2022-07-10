@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# metadata
+namespace: podcodar
+commonLabels:
+  app: podcodar
+  environment: dev
+
+# Secrets
+secretGenerator:
+  - name: daily-counter-secrets
+    envs:
+    - .secrets.env
+
+# Resources
+resources:
+- namespace.yml
+- bot.yml

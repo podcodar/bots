@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: daily-counter-bot
+spec:
+  selector:
+  template:
+    spec:
+      containers:
+        - image: masouzajr/podcodar-discord-bot:latest
+          name: podcodar-discord-botpodcodar-bot
+          imagePullPolicy: Always
+
+          envFrom:
+            - secretRef: { name: daily-counter-secrets }

@@ -1,4 +1,3 @@
 #! /bin/bash
 
-deno fmt --config deno.jsonc . && \
-git add --update
+go fmt ./... && git update-index --again

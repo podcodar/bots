@@ -1,8 +1,18 @@
-# build project in a two-step container
-FROM denoland/deno:latest
+# 1. Build project
+FROM golang:1.18 as builder
 
 WORKDIR /app/
-COPY . ./
+COPY ./ ./
 
-CMD ["deno", "run", "--allow-env", "--allow-read", "--allow-net", "mod.ts"]
+RUN go mod tidy && \
+    CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o podcodar-discord-bot .
 
+# 2. Pack compiled code
+FROM alpine:latest
+
+WORKDIR /root/
+COPY --from=builder /app/podcodar-discord-bot ./podcodar-discord-bot
+
+RUN apk --no-cache add ca-certificates
+
+CMD ["./podcodar-discord-bot"]
