@@ -1,4 +1,13 @@
 scripts:
+  publish:
+    desc: Publish podcodar-bot docker image
+    cmd: docker build -t masouzajr/podcodar-bot . && docker push masouzajr/podcodar-bot
+  mk-image:
+    desc: Create podcodar-bot docker image
+    cmd: docker build -t podcodar-bot .
+  dk-run:
+    desc: Run podcodar-bot container
+    cmd: docker run -v $(pwd)/.env:/app/.env podcodar-bot
   start:
     desc: Start package
     watch: true

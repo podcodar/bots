@@ -4,6 +4,7 @@
 		"@usecases/": "./usecases/",
 		"@entities": "./entities.ts",
 		"@settings": "./settings.ts",
+		"load-dotenv": "https://deno.land/x/dotenv/load.ts",
 		"supabase": "https://esm.sh/@supabase/supabase-js",
 		"dotenv": "https://deno.land/x/dotenv@v3.2.0/mod.ts",
 		"discord": "https://deno.land/x/discordeno@13.0.0-rc18/mod.ts",
