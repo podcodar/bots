@@ -1,18 +1,18 @@
 {
-  // editor
-  "editor.defaultFormatter": "denoland.vscode-deno",
+	// editor
+	"editor.defaultFormatter": "denoland.vscode-deno",
 
-  // deno
-  "deno.enable": true,
-  "deno.lint": true,
-  "deno.unstable": true,
-  "deno.importMap": "./imports.json",
-  "deno.suggest.imports.autoDiscover": true,
-  "deno.suggest.imports.hosts": {
-    "https://deno.land": true,
-    "https://deno.land/x": true,
-    "https://esm.sh/": true,
-    "https://crux.land/": true,
-    "https://nest.land/": true
-  }
+	// deno
+	"deno.enable": true,
+	"deno.lint": true,
+	"deno.unstable": true,
+	"deno.importMap": "./imports.json",
+	"deno.suggest.imports.autoDiscover": true,
+	"deno.suggest.imports.hosts": {
+		"https://deno.land": true,
+		"https://deno.land/x": true,
+		"https://esm.sh/": true,
+		"https://crux.land/": true,
+		"https://nest.land/": true
+	}
 }
