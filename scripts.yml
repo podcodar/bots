@@ -1,6 +1,7 @@
 scripts:
   start:
     desc: Start package
+    watch: true
     cmd: ./mod.ts
     allow:
       - net
