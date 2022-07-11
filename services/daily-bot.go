@@ -7,7 +7,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-func ComputereDailyScoreboard(msg *discordgo.Message) {
+func ComputeDailyScoreboard(msg *discordgo.Message) {
 	dailyRecord := entities.CreateDailyRecord{
 		UserId: msg.Author.ID,
 		Name:   msg.Author.Username,

@@ -38,7 +38,7 @@ func dailyMessagesHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 		if isDailyMessage {
 			logger.Println("✅ isDaily\n", m.Content)
-			ComputereDailyScoreboard(m.Message)
+			ComputeDailyScoreboard(m.Message)
 		}
 	}
 }
