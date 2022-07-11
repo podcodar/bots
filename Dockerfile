@@ -5,7 +5,7 @@ WORKDIR /app/
 COPY ./ ./
 
 RUN go mod tidy && \
-    CGO_ENABLED=0 GOOS=linux go build -o podcodar-discord-bot .
+    go build -o podcodar-discord-bot .
 
 # 2. Pack compiled code
 FROM alpine:latest
