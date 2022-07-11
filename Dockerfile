@@ -4,8 +4,7 @@ FROM golang:1.18 as builder
 WORKDIR /app/
 COPY ./ ./
 
-RUN go mod tidy && \
-    go build -o podcodar-discord-bot .
+RUN go mod tidy && go build -o podcodar-discord-bot .
 
 # 2. Pack compiled code
 FROM alpine:latest
