@@ -14,10 +14,8 @@ var session *discordgo.Session
 var logger = log.Default()
 
 func ListenDailyMessages() error {
-	session, err := repository.MakeDiscordSession(config.DiscordToken)
-	if err != nil {
-		logger.Fatal("Error creating discord session", err)
-	}
+	ds := repository.MakeDiscordSession(config.DiscordToken)
+	session = ds.Session
 
 	// Add message handler
 	session.AddHandler(dailyMessagesHandler)

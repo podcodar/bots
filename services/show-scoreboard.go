@@ -3,22 +3,31 @@ package services
 import (
 	"fmt"
 	"podcodar-discord-bot/repository"
+	"strings"
 	"time"
 )
 
+var maxNameLength = 25
+
 func SendScoreboard() {
 	now := time.Now()
-	resultString := fmt.Sprintf("\n# Scoreboard - %s\n\n", now.Format("01.02.2006"))
+	content := fmt.Sprintf("\n**Scoreboard - %s**\n\n", now.Format("02.01.2006"))
+	codeQuote := "```\n"
+	content += codeQuote
 
 	// get ranked users from scoreboard repository
 	for index, user := range repository.ScoreboardRanking(10) {
-		tabSeparator := "\t"
-		if len(user.Name) <= 10 {
-			tabSeparator += "\t"
-		}
-		resultString += fmt.Sprintf("%d. %s: %s %d\n", index+1, user.Name, tabSeparator, user.Points)
-	}
+		nameSize := len(user.Name)
+		spacesString := strings.Repeat(" ", maxNameLength-nameSize)
+		name := fmt.Sprintf("%s: %s", user.Name, spacesString)
 
-	fmt.Println(resultString)
-	// TODO: send message to daily channel
+		content += fmt.Sprintf("%d. %s | %d\n", index, name, user.Points)
+	}
+	content += codeQuote
+
+	// send message to daily channel
+	ds := repository.MakeDiscordSession(config.DiscordToken)
+	ds.Start()
+	ds.SendMessage(config.DailyChannelId, content)
+	ds.Close()
 }
