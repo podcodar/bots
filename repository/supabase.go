@@ -157,3 +157,24 @@ func CountUserActivityLastDays(userId string, days int) int {
 
 	return int(count)
 }
+
+func ScoreboardRanking(top int) []entities.DailyScoreboard {
+	if client == nil {
+		client = NewClient()
+	}
+
+	orderOptions := pgo.OrderOpts{Ascending: false}
+	queryBuilder := client.
+		From("daily_scoreboard").
+		Select("*", "exact", false).
+		Order("points", &orderOptions).
+		Limit(top, "")
+
+	ranking := []entities.DailyScoreboard{}
+	_, err := queryBuilder.ExecuteTo(&ranking)
+	if err != nil {
+		panic(err)
+	}
+
+	return ranking
+}
