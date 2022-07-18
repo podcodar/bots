@@ -18,10 +18,11 @@ func ComputeDailyScoreboard(msg *discordgo.Message) {
 		repository.AddDailyScoreboard(dailyRecord)
 	} else {
 		dailyScoreboard.Points++
-		// calculate extra points
-		if repository.CountUserActivityLastDays(dailyRecord.UserId, 7) >= 5 {
-			dailyScoreboard.Points++
-		}
+
+		// TODO: add extra points
+		// if repository.CountUserActivityLastDays(dailyRecord.UserId, 7) >= 5 {
+		// 	dailyScoreboard.Points++
+		// }
 
 		dailyScoreboard.CurrentStreak++
 		// if no report yesterday, reset current streak
