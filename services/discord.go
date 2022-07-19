@@ -27,7 +27,7 @@ func CloseBot() {
 	session.Close()
 }
 
-func dailyMessagesHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
+func dailyMessagesHandler(_ *discordgo.Session, m *discordgo.MessageCreate) {
 	isDailyChannel := m.ChannelID == config.DailyChannelId
 	if isDailyChannel {
 		content := strings.ToLower(m.Content)
