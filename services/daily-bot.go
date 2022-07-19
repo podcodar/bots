@@ -29,12 +29,14 @@ func ComputeDailyScoreboard(msg *discordgo.Message) {
 	repository.AddDailyRecord(dailyRecord)
 }
 
+var REPORT_STREAK = 4
+
 func computeExtraPoints(dailyScoreboard *entities.DailyScoreboard) {
 	// add extra points if user has 5 standups on the current week
 	weekday := time.Now().Weekday()
 
 	if weekday >= 4 {
-		if repository.CountUserActivityLastDays(dailyScoreboard.UserId, int(weekday)) == 5 {
+		if repository.CountUserActivityLastDays(dailyScoreboard.UserId, int(weekday)) == REPORT_STREAK {
 			dailyScoreboard.Points++
 		}
 	}
