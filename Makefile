@@ -1,6 +1,9 @@
 run: main.go
 	go run main.go
 
+fmt:
+	go fmt ./...
+
 scoreboard: main.go
 	go run main.go --scoreboard
 
