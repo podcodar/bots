@@ -1,3 +1,2 @@
 #! /bin/bash
-
-go fmt ./... && git update-index --again
+make fmt && git update-index --again
