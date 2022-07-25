@@ -17,4 +17,3 @@ secretGenerator:
 resources:
 - namespace.yml
 - bot.yml
-- scoreboard-job.yml

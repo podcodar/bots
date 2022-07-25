@@ -12,6 +12,7 @@ type Settings struct {
 	DailyChannelId string
 	SupabaseUrl    string
 	SupabaseToken  string
+	GuildId        string
 }
 
 var settings *Settings
@@ -35,6 +36,7 @@ func LoadConfig() Settings {
 		DailyChannelId: os.Getenv("DAILY_CHANNEL"),
 		SupabaseUrl:    os.Getenv("SUPABASE_URL"),
 		SupabaseToken:  os.Getenv("SUPABASE_TOKEN"),
+		GuildId:        os.Getenv("GUILD_ID"),
 	}
 
 	return *settings

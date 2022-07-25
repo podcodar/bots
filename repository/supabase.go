@@ -2,8 +2,10 @@ package repository
 
 import (
 	"encoding/json"
+	"fmt"
 	"podcodar-discord-bot/entities"
 	"podcodar-discord-bot/settings"
+	"strings"
 	"time"
 
 	pgo "github.com/supabase/postgrest-go"
@@ -177,4 +179,25 @@ func ScoreboardRanking(top int) []entities.DailyScoreboard {
 	}
 
 	return ranking
+}
+
+var MAX_NAME_LENGTH = 25
+
+func CreateScoreboardContent() string {
+	now := time.Now()
+	content := fmt.Sprintf("\n**Scoreboard - %s**\n\n", now.Format("02.01.2006"))
+	codeQuote := "```\n"
+	content += codeQuote
+
+	// get ranked users from scoreboard repository
+	for index, user := range ScoreboardRanking(10) {
+		nameSize := len(user.Name)
+		spacesString := strings.Repeat(" ", MAX_NAME_LENGTH-nameSize)
+		name := fmt.Sprintf("%s: %s", user.Name, spacesString)
+
+		content += fmt.Sprintf("%d. %s | %d\n", index, name, user.Points)
+	}
+	content += codeQuote
+
+	return content
 }
